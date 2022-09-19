@@ -60,16 +60,6 @@ function root_class.iter( self )
 	
 end
 
-function root_class._refrence( self, index )
-	
-	return self.objects[index] and function()
-		
-		return self.objects[index]
-		
-	end
-	
-end
-
 local name_class = {}
 name_class.__index = name_class
 
@@ -143,7 +133,8 @@ local ref_class = {}
 ref_class.__call = function( self )
 	return self.refrenceTable[self.id]
 end
-ref_class.__tostring = "pdf_refrence"
+ref_class.__type = "pdf_refrence"
+ref_class.__tostring = ref_class.__type
 
 local c = string.char
 
@@ -370,7 +361,7 @@ local function parse( file, root )
 			local _, r = readUntil( file, whitespace, true )
 			if r == "R" then
 				
-				return true, setmetatable({id = atomic})
+				return true, setmetatable({id = atomic}, ref_class)
 				
 			end
 			file:Seek( bonjour )

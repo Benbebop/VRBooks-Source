@@ -1,0 +1,6 @@
+
+function readGlyph()
+	
+	
+	
+end
